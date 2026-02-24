@@ -25,3 +25,6 @@ logs
 
 #vscode
 .vscode/*
+
+#draft folder for development project files
+.draft/*
