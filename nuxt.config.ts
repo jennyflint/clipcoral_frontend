@@ -1,7 +1,8 @@
 export default defineNuxtConfig({
   modules: [
     '@nuxtjs/ionic',
-    '@nuxt/eslint'
+    '@nuxt/eslint',
+    '@pinia/nuxt',
   ],
   typescript: {
     strict: true,
