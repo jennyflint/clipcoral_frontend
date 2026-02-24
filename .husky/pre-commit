@@ -2,20 +2,23 @@
 # Load Husky
 . "$(dirname "$0")/_/husky.sh"
 
+# 1. Type Check
 echo "🐳 Running type check..."
-
-# Run the command inside the container
 docker exec -t clipcoral_frontend npm run typecheck
-
-# $? contains the exit code of the last command
-EXIT_CODE=$?
-
-# If the exit code is NOT 0, an error occurred
-if [ $EXIT_CODE -ne 0 ]; then
-  echo "❌ ERROR: TypeScript found issues (Exit code: $EXIT_CODE)."
+if [ $? -ne 0 ]; then
+  echo "❌ ERROR: TypeScript found issues."
   echo "🚫 Commit blocked!"
   exit 1
 fi
 
-echo "✅ All clear."
+# 2. Lint Check
+echo "🧹 Running linter (ESLint)..."
+docker exec -t clipcoral_frontend npm run lint
+if [ $? -ne 0 ]; then
+  echo "❌ ERROR: Linter found style or logic issues."
+  echo "🚫 Commit blocked!"
+  exit 1
+fi
+
+echo "✅ All clear. Proceeding to commit..."
 exit 0
