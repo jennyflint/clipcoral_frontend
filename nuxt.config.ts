@@ -3,6 +3,7 @@ export default defineNuxtConfig({
     '@nuxtjs/ionic',
     '@nuxt/eslint',
     '@pinia/nuxt',
+    '@nuxtjs/tailwindcss',
   ],
   typescript: {
     strict: true,
